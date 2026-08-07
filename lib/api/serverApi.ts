@@ -53,14 +53,16 @@ export async function fetchNoteById(id: string): Promise<Note> {
   return response.data;
 }
 
-export async function checkSession(cookieHeader: string): Promise<boolean> {
+export async function checkSession() {
+  const cookieStore = await cookies();
+
   const response = await api.get<CheckSessionResponse>('/auth/session', {
     headers: {
-      Cookie: cookieHeader,
+      Cookie: cookieStore.toString(),
     },
   });
 
-  return response.data.success;
+  return response;
 }
 
 export async function getMe(): Promise<User> {
