@@ -58,8 +58,10 @@ export async function proxy(request: NextRequest) {
   for (const cookieStr of setCookieHeaders) {
     const parsed = parseSetCookie(cookieStr);
 
-    if (parsed.value) {
-      response.cookies.set(parsed.name, parsed.value, parsed);
+    const { name, value, ...options } = parsed;
+
+    if (value) {
+      response.cookies.set(name, value, options);
     }
   }
 
