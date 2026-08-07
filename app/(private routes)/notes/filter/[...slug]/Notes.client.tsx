@@ -7,7 +7,7 @@ import NoteList from '@/components/NoteList/NoteList';
 import SearchBox from '@/components/SearchBox/SearchBox';
 import Pagination from '@/components/Pagination/Pagination';
 import Link from 'next/link';
-import { fetchNotes, type FetchNotesResponse } from '@/lib/api';
+import { fetchNotes, type FetchNotesResponse } from '@/lib/api/clientApi';
 
 import css from './NotesPage.module.css';
 

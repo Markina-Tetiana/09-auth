@@ -1,4 +1,5 @@
-import { fetchNotes } from '@/lib/api';
+import { fetchNotes } from '@/lib/api/serverApi';
+import type { NoteTag } from '@/types/note';
 import {
   dehydrate,
   HydrationBoundary,
@@ -54,7 +55,8 @@ const PER_PAGE = 12;
 async function NotesPage({ params }: NotesPageProps) {
   const { slug } = await params;
   const currentTag = slug[0];
-  const tag = currentTag === 'all' ? undefined : currentTag;
+  const tag: NoteTag | undefined =
+    currentTag === 'all' ? undefined : (currentTag as NoteTag);
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
